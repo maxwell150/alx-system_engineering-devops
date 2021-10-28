@@ -1,3 +1,4 @@
 #!/usr/bin/env bash
+# accessing apache logs
 
 awk "{print $1 ` ` $9}" apache-access.log
