@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# displays lines containing the bash word, thus allowing one to easily get PID of Bash process
+
+ps aux|grep bash

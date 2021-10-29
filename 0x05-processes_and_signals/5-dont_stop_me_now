@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+# different way to execute 4-to_infinity_and_beyond
+
+pid=$(pgrep "bash ./4-to_infinty_and_beyond" -f)
+
+
+if [ -n "$pid" ];then
+	kill -15 "$pid"
+fi
+
