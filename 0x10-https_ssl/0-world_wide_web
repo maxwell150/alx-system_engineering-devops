@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+# After configuring domain zone, use this script to output where each subdomain points to
+domainInfo () {
+
+    dig "$1.$2" | grep -A1 'ANSWER SECTION:' | tail -1 | awk -v s="$1" 'BEGIN { FS = " " } ;
+	 { print "The subdomain " s " is a " $4 " record and points to " $5 }'
+}
+
+sub_domains=( "www" "lb-01" "web-01" "web-02" )
+
+if [ $# -eq 1 ]; then
+    url="$1"
+    for s in "${sub_domains[@]}"
+    do
+	domainInfo "$s" "$url"
+    done
+elif [ $# -eq 2 ]; then
+    url="$1"
+    sub="$2"
+    domainInfo "$sub" "$url"
+fi
