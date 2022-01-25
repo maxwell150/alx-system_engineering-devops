@@ -2,7 +2,7 @@
 # accepts 1 arg and runs whoami on the arg(user)
 
 if [ $# = 1 ];then
-        sudo -H -u "$!" bash -c 'whoami'
+        sudo -u "$1" whoami
 elif [ $# = 0 ];then
         whoami
 fi
