@@ -8,15 +8,15 @@ import sys
 
 def todo_list():
     url = "https://jsonplaceholder.typicode.com/"
-    employee = requests.get(url + f'users/{sys.argv[1]}').json()
+    employee = requests.get(url + 'users/{}'.format(sys.argv[1])).json()
     todo = requests.get(url + 'todos', params={'userId': sys.argv[1]}).json()
 
     complete_tasks = []
     for task in todo:
         if task.get('completed') is True:
             complete_tasks.append(task.get('title'))
-    print(f"Employee {employee.get('name')} is done with tasks({len(complete_tasks)}/{len(todo)}):")
-    [print(f"\t {complete}") for complete in complete_tasks]
+    print("Employee {} is done with tasks({}/{}):".format(employee.get('name'), len(complete_tasks),len(todo)))
+    [print("\t {}".format(complete)) for complete in complete_tasks]
 
 if __name__ == '__main__':
     todo_list()
