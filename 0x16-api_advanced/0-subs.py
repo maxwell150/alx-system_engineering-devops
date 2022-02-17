@@ -9,8 +9,8 @@ def number_of_subscribers(subreddit):
     """
     redditApi = f'https://www.reddit.com/r/{subreddit}/about.json'
     headers = {'User-Agent': 'just-max'}
-    res = requests.get(redditApi, headers)
-    if res.status_code == 404 or not res:
+    res = requests.get(redditApi, headers, allow_redirects=False)
+    if res.status_code == 404:
         return 0
-    results = res.json().get('data')
-    return results.get('subscribers')
+    results = res.json()['data']['subscribers']
+    return results
